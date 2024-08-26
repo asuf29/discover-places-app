@@ -28,7 +28,7 @@ function LoginScreen() {
     <View style={styles.container}>
       <View>
         <Image
-          source={require('../assets/images/exp.gif')}
+          source={require('../assets/images/explorer.gif')}
           style={tw`w-40 h-40 mt-20`}
         />
       </View>
