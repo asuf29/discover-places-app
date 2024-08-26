@@ -101,7 +101,12 @@ const MainTabNavigator = () => {
 const App = () => {
   return (
     <NavigationContainer independent={true}>
-      <Stack.Navigator>
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false,
+        }}
+        initialRouteName="Splash"
+      >
         <Stack.Screen name="Splash" component={SplashScreen} />
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Register" component={RegisterScreen} />
