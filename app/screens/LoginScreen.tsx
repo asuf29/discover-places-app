@@ -5,6 +5,7 @@ import {
   StyleSheet,
   TextInput,
   TouchableOpacity,
+  Image,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import tw from 'twrnc';
@@ -25,11 +26,15 @@ function LoginScreen() {
 
   return (
     <View style={styles.container}>
-      <Text style={tw`text-5xl font-bold mt-30 mr-20 text-blue-950`}>
-        Welcome, explorer!
-      </Text>
+      <View>
+        <Image
+          source={require('../assets/images/exp.gif')}
+          style={tw`w-40 h-40 mt-20`}
+        />
+      </View>
+      <Text style={tw`text-5xl font-bold mt-10 mr-20`}>Welcome, explorer!</Text>
       <TextInput
-        style={tw`border rounded-full border-blue-950 mt-10 w-80 h-12 p-2 `}
+        style={tw`border rounded-full mt-10 w-80 h-12 p-2 `}
         onChangeText={(text) => setEmail(text)}
         placeholder="Email"
         placeholderTextColor="#A0A0A0"
@@ -37,7 +42,7 @@ function LoginScreen() {
         autoCapitalize="none"
       />
       <TextInput
-        style={tw`border rounded-full border-blue-950 mt-5 w-80 h-12 p-2 `}
+        style={tw`border rounded-full mt-5 w-80 h-12 p-2 `}
         onChangeText={(text) => setPassword(text)}
         placeholder="Password"
         placeholderTextColor="#A0A0A0"
@@ -46,7 +51,7 @@ function LoginScreen() {
       />
       <TouchableOpacity
         style={[
-          tw`border rounded-full bg-blue-950 text-white px-4 py-2 w-80 h-12 mt-5 items-center`,
+          tw`border rounded-full bg-black text-white px-4 py-2 w-80 h-12 mt-5 items-center`,
         ]}
         onPress={handleLogin}
       >
@@ -55,7 +60,7 @@ function LoginScreen() {
       <View style={tw`flex flex-row gap-x-2 justify-center items-center mt-6`}>
         <Text style={tw`text-gray-400 text-base`}>Don't Have Account?</Text>
         <TouchableOpacity style={tw`text-gray-700`}>
-          <Text style={tw`text-base text-blue-950`}>Sign Up</Text>
+          <Text style={tw`text-base`}>Sign Up</Text>
         </TouchableOpacity>
       </View>
     </View>
