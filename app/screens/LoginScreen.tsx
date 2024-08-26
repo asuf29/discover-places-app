@@ -20,7 +20,7 @@ function LoginScreen() {
   const navigation = useNavigation();
 
   const handleLogin = () => {
-    navigation.navigate('Home');
+    navigation.navigate('HomeScreen');
   };
 
   return (
