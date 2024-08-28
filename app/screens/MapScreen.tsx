@@ -10,9 +10,12 @@ import { FontAwesome } from '@expo/vector-icons';
 import MapView, { Marker, Callout } from 'react-native-maps';
 import * as Location from 'expo-location';
 import tw from 'twrnc';
+import { useNavigation } from '@react-navigation/native';
+import ViewDetails from './ViewDetails';
 
 const MapScreen = () => {
   const [searchQuery, setSearchQuery] = useState('');
+  const navigation = useNavigation();
   const [mapRegion, setMapRegion] = useState({
     latitude: 37.78825,
     longitude: -122.4324,
@@ -40,6 +43,10 @@ const MapScreen = () => {
       },
     },
   ]);
+
+  const handleViewDetails = () => {
+    navigation.navigate('ViewDetails');
+  };
 
   useEffect(() => {
     const getLocation = async () => {
@@ -80,7 +87,10 @@ const MapScreen = () => {
                   </Text>
                 </View>
                 <Text style={tw`mt-2 text-center`}>{marker.description}</Text>
-                <TouchableOpacity style={tw`mt-2 p-2 bg-black rounded-md`}>
+                <TouchableOpacity
+                  onPress={handleViewDetails}
+                  style={tw`mt-2 p-2 bg-black rounded-md`}
+                >
                   <Text style={tw`text-white text-center font-bold`}>
                     View Details
                   </Text>
