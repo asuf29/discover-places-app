@@ -12,6 +12,7 @@ import MapScreen from './screens/MapScreen';
 import SharePostScreen from './screens/SharePostScreen';
 import FavoriteScreen from './screens/FavoriteScreen';
 import ProfileScreen from './screens/ProfileScreen';
+import ViewDetails from './screens/ViewDetails';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -117,6 +118,7 @@ const App = () => {
         <Stack.Screen name="SharePost" component={SharePostScreen} />
         <Stack.Screen name="Favorite" component={FavoriteScreen} />
         <Stack.Screen name="Profile" component={ProfileScreen} />
+        <Stack.Screen name="ViewDetails" component={ViewDetails} />
       </Stack.Navigator>
     </NavigationContainer>
   );
