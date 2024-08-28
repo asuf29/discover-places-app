@@ -44,7 +44,7 @@ const MapScreen = () => {
           <FontAwesome name="search" size={16} color="white" />
         </TouchableOpacity>
         <TextInput
-          placeholder="Search for places..."
+          placeholder="Search on map..."
           style={tw`flex-1 text-stone-950 ml-2`}
           value={searchQuery}
           autoCapitalize="none"
