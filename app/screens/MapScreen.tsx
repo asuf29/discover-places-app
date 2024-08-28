@@ -72,12 +72,19 @@ const MapScreen = () => {
             description={marker.description}
           >
             <Callout>
-              <View style={tw`p-2`}>
-                <View style={tw`flex-row items-center mr-2 `}>
+              <View style={tw`p-2 mx-2 justify-center mt-2`}>
+                <View style={tw`flex-row items-center justify-center`}>
                   <FontAwesome name="map-marker" size={16} color="red" />
-                  <Text style={tw`font-bold ml-2`}>{marker.title}</Text>
+                  <Text style={tw`font-bold ml-2 text-center`}>
+                    {marker.title}
+                  </Text>
                 </View>
-                <Text style={tw`mt-2`}>{marker.description}</Text>
+                <Text style={tw`mt-2 text-center`}>{marker.description}</Text>
+                <TouchableOpacity style={tw`mt-2 p-2 bg-black rounded-md`}>
+                  <Text style={tw`text-white text-center font-bold`}>
+                    View Details
+                  </Text>
+                </TouchableOpacity>
               </View>
             </Callout>
           </Marker>
