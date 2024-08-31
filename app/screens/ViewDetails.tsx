@@ -36,7 +36,6 @@ const ViewDetails = () => {
 
   return (
     <View style={tw`flex-1`}>
-      <Text>View Details</Text>
       <BackPageRedirect />
       <FlatList
         data={photos}
