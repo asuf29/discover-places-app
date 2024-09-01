@@ -31,7 +31,7 @@ function SearchBarComponent({
           onChangeText={(text) => setSearchQuery(text)}
         />
       </View>
-      <TouchableOpacity style={tw`ml-2 p-2 bg-red-500 rounded-lg`}>
+      <TouchableOpacity style={tw`ml-2 p-2 bg-[#03A9F4] rounded-lg`}>
         <MaterialIcons name="filter-list" size={20} color="white" />
       </TouchableOpacity>
     </View>

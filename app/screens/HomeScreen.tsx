@@ -21,17 +21,17 @@ function HomeScreen() {
           </View>
           <Ionicons name="notifications" size={24} color="black" />
         </View>
-        <View style={tw`w-full mt-5 p-4 rounded-lg`}>
+        <View style={tw`w-full mt-5 p-2 rounded-lg`}>
           <Text style={tw`text-2xl font-bold`}>
             Where do{'\n'}you want to go?
           </Text>
           <SearchBar />
         </View>
-        <View style={tw`w-full mt-5 p-4 rounded-lg`}>
+        <View style={tw`w-full mt-5 p-2 rounded-lg`}>
           <Text style={tw`text-base font-bold mb-2`}>Categories</Text>
           <CategoryList />
         </View>
-        <View style={tw`w-full mt-5 p-4 rounded-lg mb-20`}>
+        <View style={tw`w-full mt-5 p-2 rounded-lg mb-20`}>
           <Text style={tw`text-base font-bold `}>Top trips</Text>
           <TopTrips />
         </View>

@@ -5,9 +5,7 @@ import SearchBarComponent from '../components/SearchBarComponent';
 
 function SearchBar() {
   const handleSearch = (query: string) => {
-    // Arama işlevselliği buraya gelecek
     console.log('Search query:', query);
-    // Burada arama terimi ile ne yapmak istiyorsanız onu yapabilirsiniz
   };
 
   return (

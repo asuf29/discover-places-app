@@ -89,7 +89,7 @@ const MapScreen = () => {
                 <Text style={tw`mt-2 text-center`}>{marker.description}</Text>
                 <TouchableOpacity
                   onPress={handleViewDetails}
-                  style={tw`mt-2 p-2 bg-black rounded-md`}
+                  style={tw`mt-2 p-2 bg-[#03A9F4] rounded-md`}
                 >
                   <Text style={tw`text-white text-center font-bold`}>
                     View Details
