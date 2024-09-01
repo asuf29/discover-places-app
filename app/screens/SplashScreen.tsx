@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import tw from 'twrnc';
 
 function SplashScreen() {
   const navigation = useNavigation();
@@ -16,10 +17,10 @@ function SplashScreen() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>
-        Let's <Text style={styles.highlight}>discover</Text> the beautiful
-        world!
-      </Text>
+      <Image
+        source={require('../assets/images/dp-splash.png')}
+        style={styles.logo}
+      />
     </View>
   );
 }
@@ -38,6 +39,11 @@ const styles = StyleSheet.create({
   highlight: {
     color: '#0B0241',
     fontStyle: 'italic',
+  },
+  logo: {
+    width: '100%',
+    height: '100%',
+    resizeMode: 'contain',
   },
 });
 
