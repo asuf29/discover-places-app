@@ -38,7 +38,7 @@ const TopTripsList = [
 function renderItem({ item }: { item: any }) {
   return (
     <TouchableOpacity style={tw`items-start p-4`}>
-      <Image source={item.image} style={tw`w-25 h-25 rounded-lg`} />
+      <Image source={item.image} style={tw`w-30 h-30 rounded-lg`} />
       <Text style={tw`text-sm mt-2 font-bold`}>{item.name}</Text>
       <Text style={tw`text-sm text-gray-400`}>{item.category}</Text>
     </TouchableOpacity>

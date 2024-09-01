@@ -13,14 +13,14 @@ const BackPageRedirect = () => {
 
   return (
     <View
-      style={tw`absolute w-full h-18 top-0 flex-row items-center justify-start px-4 pt-4 border-b border-gray-300 bg-gray-800 z-10`}
+      style={tw`absolute w-full h-18 top-0 flex-row items-center justify-start px-4 pt-4 border-b border-gray-300 z-10`}
     >
       <TouchableOpacity
         onPress={handleBack}
         style={tw`flex-row p-2 rounded-md mx-2`}
       >
-        <FontAwesome name="arrow-left" size={16} color="white" />
-        <Text style={tw`text-white text-center font-bold ml-2`}>
+        <FontAwesome name="arrow-left" size={16} color="black" />
+        <Text style={tw`text-black text-center font-bold ml-2`}>
           Back to map!
         </Text>
       </TouchableOpacity>
