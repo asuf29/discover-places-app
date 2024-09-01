@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, TouchableOpacity, FlatList, Image } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import tw from 'twrnc';
+import BackPageRedirect from '../components/BackPageRedirect';
 
 const ViewDetails = () => {
   const photos = [
@@ -28,31 +29,25 @@ const ViewDetails = () => {
   ];
 
   const renderItem = ({ item }: { item: any }) => (
-    <View style={tw`mb-4 w-1/3 p-1`}>
+    <TouchableOpacity style={tw`mb-4 w-1/3 p-1`}>
       <Image source={item.source} style={tw`w-full h-40 rounded-lg`} />
-    </View>
+    </TouchableOpacity>
   );
 
   return (
     <View style={tw`flex-1`}>
-      <TouchableOpacity style={tw`flex-row p-2 bg-black rounded-md mx-4 mt-10`}>
-        <FontAwesome name="arrow-left" size={16} color="white" />
-        <Text style={tw`text-white text-center font-bold ml-2`}>
-          Back to map!
-        </Text>
-      </TouchableOpacity>
-      <Text style={tw`text-xl text-center `}>View Details Screen</Text>
+      <BackPageRedirect />
       <FlatList
         data={photos}
         renderItem={({ item }) => (
           <Image
             source={item.source}
-            style={tw`w-40 h-40 items-center mx-2 mb-4`}
+            style={tw`w-40 h-40 items-center mx-2 mb-2`}
           />
         )}
         keyExtractor={(item) => item.id.toString()}
         numColumns={2}
-        contentContainerStyle={tw`p-4`}
+        contentContainerStyle={tw`p-4 pt-20`}
       />
     </View>
   );
