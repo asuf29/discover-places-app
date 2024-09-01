@@ -39,7 +39,7 @@ function LoginScreen() {
       </View>
       <Text style={tw`text-5xl font-bold mt-10 mr-20`}>Welcome, explorer!</Text>
       <TextInput
-        style={tw`border rounded-full mt-10 w-80 h-12 p-2 `}
+        style={tw`bg-gray-200 rounded-lg mt-10 w-80 h-12 p-2 `}
         onChangeText={(text) => setEmail(text)}
         placeholder="Email"
         placeholderTextColor="#A0A0A0"
@@ -47,7 +47,7 @@ function LoginScreen() {
         autoCapitalize="none"
       />
       <TextInput
-        style={tw`border rounded-full mt-5 w-80 h-12 p-2 `}
+        style={tw`bg-gray-200 rounded-lg mt-5 w-80 h-12 p-2 `}
         onChangeText={(text) => setPassword(text)}
         placeholder="Password"
         placeholderTextColor="#A0A0A0"
@@ -56,16 +56,16 @@ function LoginScreen() {
       />
       <TouchableOpacity
         style={[
-          tw`border rounded-full bg-black text-white px-4 py-2 w-80 h-12 mt-5 items-center`,
+          tw`rounded-lg mt-5 w-80 h-12 p-2 items-center justify-center bg-[#03A9F4]`,
         ]}
         onPress={handleLogin}
       >
-        <Text style={tw`text-white text-base`}>Log in</Text>
+        <Text style={tw`text-white text-base font-bold`}>Log in</Text>
       </TouchableOpacity>
       <View style={tw`flex flex-row gap-x-2 justify-center items-center mt-6`}>
         <Text style={tw`text-gray-400 text-base`}>Don't Have Account?</Text>
         <TouchableOpacity onPress={handleRegister} style={tw`text-gray-700`}>
-          <Text style={tw`text-base`}>Sign Up</Text>
+          <Text style={tw`text-base text-red-700`}>Sign Up</Text>
         </TouchableOpacity>
       </View>
     </View>
