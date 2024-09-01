@@ -10,6 +10,7 @@ import {
 import { useNavigation } from '@react-navigation/native';
 import tw from 'twrnc';
 import HomeScreen from './HomeScreen';
+import RegisterScreen from './RegisterScreen';
 
 function LoginScreen() {
   const [email, setEmail] = useState('');
@@ -22,6 +23,10 @@ function LoginScreen() {
 
   const handleLogin = () => {
     navigation.navigate('HomeScreen');
+  };
+
+  const handleRegister = () => {
+    navigation.navigate('Register');
   };
 
   return (
@@ -59,7 +64,7 @@ function LoginScreen() {
       </TouchableOpacity>
       <View style={tw`flex flex-row gap-x-2 justify-center items-center mt-6`}>
         <Text style={tw`text-gray-400 text-base`}>Don't Have Account?</Text>
-        <TouchableOpacity style={tw`text-gray-700`}>
+        <TouchableOpacity onPress={handleRegister} style={tw`text-gray-700`}>
           <Text style={tw`text-base`}>Sign Up</Text>
         </TouchableOpacity>
       </View>
