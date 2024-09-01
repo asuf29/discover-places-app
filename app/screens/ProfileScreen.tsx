@@ -27,12 +27,20 @@ const photos = [
     id: 4,
     image: require('../assets/images/pamukkale.jpeg'),
   },
+  {
+    id: 5,
+    image: require('../assets/images/beach.jpeg'),
+  },
+  {
+    id: 6,
+    image: require('../assets/images/Cappadocia.jpeg'),
+  },
 ];
 
 function ProfileScreen() {
   const renderItem = ({ item }: { item: any }) => (
     <View style={tw`w-1/2 p-1`}>
-      <Image source={item} style={tw`w-full h-32 rounded-lg`} />
+      <Image source={item} style={tw`w-full h-60 rounded-lg`} />
     </View>
   );
 
@@ -77,14 +85,14 @@ function ProfileScreen() {
           </View>
         </View>
       </View>
-      <FlatList
-        data={photos}
-        renderItem={renderItem}
-        keyExtractor={(item, index) => index.toString()}
-        numColumns={2}
-        columnWrapperStyle={tw`justify-between`}
-        style={tw`p-4 bg-red-100`}
-      />
+      <View style={tw`mt-5 px-8`}>
+        <FlatList
+          data={photos.map((photo) => photo.image)}
+          renderItem={renderItem}
+          keyExtractor={(item) => item}
+          numColumns={2}
+        />
+      </View>
     </View>
   );
 }
