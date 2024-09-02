@@ -47,7 +47,7 @@ function ProfileScreen() {
   return (
     <View style={tw`flex-1`}>
       <ImageBackground
-        source={require('../assets/images/turk.jpeg')}
+        source={require('../assets/images/beach.jpeg')}
         style={tw`w-full h-40`}
       >
         <View style={tw`flex-row items-center ml-5 mt-28`}>
