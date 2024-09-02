@@ -8,7 +8,9 @@ import {
   TouchableOpacity,
   FlatList,
 } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import tw from 'twrnc';
+import EditProfileScreen from './EditProfileScreen';
 
 const photos = [
   {
@@ -38,6 +40,12 @@ const photos = [
 ];
 
 function ProfileScreen() {
+  const navigation = useNavigation();
+
+  const handleEditProfile = () => {
+    navigation.navigate('EditProfile');
+  };
+
   const renderItem = ({ item }: { item: any }) => (
     <View style={tw`w-1/2 p-1`}>
       <Image source={item} style={tw`w-full h-60 rounded-lg`} />
@@ -51,7 +59,7 @@ function ProfileScreen() {
         style={tw`w-full h-40`}
       >
         <View style={tw`items-end mt-8 px-5`}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={handleEditProfile}>
             <FontAwesome name="ellipsis-v" size={24} color="white" />
           </TouchableOpacity>
         </View>
