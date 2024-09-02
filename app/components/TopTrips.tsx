@@ -6,45 +6,45 @@ import { useNavigation } from '@react-navigation/native';
 const TopTripsList = [
   {
     id: '1',
-    name: 'Asu',
+    name: 'İstanbul',
     location: 'İstanbul, Turkey',
-    category: 'camping',
+    category: 'historical sites',
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     image: require('../assets/images/travel1.jpeg'),
   },
   {
     id: '2',
-    name: 'Asu',
+    name: 'Amsterdam',
     location: 'Amsterdam, Netherlands',
-    category: 'camping',
+    category: 'city tours',
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     image: require('../assets/images/travel3.jpeg'),
   },
   {
     id: '3',
-    name: 'Asu',
+    name: 'Roma',
     location: 'Roma, Italy',
-    category: 'camping',
+    category: 'historical sites',
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     image: require('../assets/images/travel2.jpeg'),
   },
   {
     id: '4',
-    name: 'Asu',
+    name: 'Paris',
     location: 'Paris, France',
-    category: 'camping',
+    category: 'food and drink',
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     image: require('../assets/images/travel4.jpeg'),
   },
   {
     id: '5',
-    name: 'Asu',
+    name: 'İstanbul',
     location: 'İstanbul, Turkey',
-    category: 'camping',
+    category: 'historical sites',
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     image: require('../assets/images/travel5.jpeg'),
