@@ -7,31 +7,31 @@ const TopTripsList = [
     id: '1',
     name: 'Asu',
     category: 'camping',
-    image: require('../assets/images/asuf.jpg'),
+    image: require('../assets/images/travel3.jpeg'),
   },
   {
     id: '2',
     name: 'Asu',
     category: 'camping',
-    image: require('../assets/images/asuf.jpg'),
+    image: require('../assets/images/travel2.jpeg'),
   },
   {
     id: '3',
     name: 'Asu',
     category: 'camping',
-    image: require('../assets/images/asuf.jpg'),
+    image: require('../assets/images/travel4.jpeg'),
   },
   {
     id: '4',
     name: 'Asu',
     category: 'camping',
-    image: require('../assets/images/asuf.jpg'),
+    image: require('../assets/images/travel5.jpeg'),
   },
   {
     id: '5',
     name: 'Asu',
     category: 'camping',
-    image: require('../assets/images/asuf.jpg'),
+    image: require('../assets/images/travel1.jpeg'),
   },
 ];
 
