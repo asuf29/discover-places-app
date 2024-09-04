@@ -1,13 +1,20 @@
 import React from 'react';
-import { Text, View, Image, ScrollView } from 'react-native';
+import { Text, View, Image, ScrollView, TouchableOpacity } from 'react-native';
 import tw from 'twrnc';
 import { Ionicons } from '@expo/vector-icons';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import SearchBar from './SearchBar';
 import CategoryList from '../components/CategoryList';
 import TopTrips from '../components/TopTrips';
+import { useNavigation } from 'expo-router';
 
 function HomeScreen() {
+  const navigation = useNavigation();
+
+  const handleNotifications = () => {
+    navigation.navigate('Notifications');
+  };
+
   return (
     <SafeAreaView style={tw`flex-1`}>
       <ScrollView contentContainerStyle={tw`items-center px-4`}>
@@ -19,7 +26,9 @@ function HomeScreen() {
             />
             <Text style={tw`text-base font-semibold`}>Hi, Asu!</Text>
           </View>
-          <Ionicons name="notifications" size={24} color="black" />
+          <TouchableOpacity onPress={handleNotifications}>
+            <Ionicons name="notifications" size={24} color="black" />
+          </TouchableOpacity>
         </View>
         <View style={tw`w-full mt-5 p-2 rounded-lg`}>
           <Text style={tw`text-2xl font-bold`}>
