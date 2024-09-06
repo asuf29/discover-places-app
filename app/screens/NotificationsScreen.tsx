@@ -21,7 +21,7 @@ function NotificationsScreen() {
           </View>
           <View style={tw`ml-4 flex-1`}>
             <Text style={tw`text-sm font-bold text-black`}>
-              New comment on your post "Hello World"
+              New comment on your post!
             </Text>
             <Text style={tw`text-xs text-gray-500 mt-1`}>5 minutes ago</Text>
           </View>
