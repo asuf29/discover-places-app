@@ -1,6 +1,6 @@
 import { FontAwesome } from '@expo/vector-icons';
 import React from 'react';
-import { Text, View, Image, FlatList } from 'react-native';
+import { Text, View, Image, FlatList, TouchableOpacity } from 'react-native';
 import tw from 'twrnc';
 
 const photos = [
@@ -45,7 +45,12 @@ const photos = [
 function FavoriteScreen() {
   const renderItem = ({ item }: { item: any }) => (
     <View style={tw`w-1/2 p-1`}>
-      <Image source={item.image} style={tw`w-full h-40 rounded-lg`} />
+      <View style={tw`relative`}>
+        <Image source={item.image} style={tw`w-full h-40 rounded-lg`} />
+        <TouchableOpacity style={tw`absolute bottom-2 right-2`}>
+          <FontAwesome name="heart" size={14} color="white" />
+        </TouchableOpacity>
+      </View>
       <Text style={tw`text-sm font-semibold mt-2`}>{item.name}</Text>
       <View style={tw`flex-row items-center mt-1`}>
         <FontAwesome name="map-marker" size={14} color="red" />
