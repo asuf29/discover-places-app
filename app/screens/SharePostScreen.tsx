@@ -1,10 +1,11 @@
 import React from 'react';
 import { Text, View } from 'react-native';
+import tw from 'twrnc';
 
 function SharePostScreen() {
   return (
-    <View>
-      <Text>Share Post Screen</Text>
+    <View style={tw`flex-1 items-center justify-center`}>
+      <Text style={tw`text-xl font-semibold`}>Share Post Screen</Text>
     </View>
   );
 }
