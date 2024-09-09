@@ -43,7 +43,9 @@ function SharePostScreen({ navigation }: { navigation: NavigationProp<any> }) {
           <Ionicons name="arrow-back" size={24} color="black" />
         </TouchableOpacity>
         <Text style={tw`text-lg font-semibold ml-8`}>New Post</Text>
-        <Button title="Share" onPress={handlePost} color="#3498db" />
+        <TouchableOpacity onPress={handlePost}>
+          <Text style={tw`text-blue-500 text-lg font-semibold`}>Share</Text>
+        </TouchableOpacity>
       </View>
 
       <ScrollView style={tw`flex-1 p-4 ml-4`}>
@@ -62,6 +64,11 @@ function SharePostScreen({ navigation }: { navigation: NavigationProp<any> }) {
           )}
         </View>
       </ScrollView>
+      <TextInput
+        style={tw`p-4 border-t border-gray-200`}
+        placeholder="Write a caption..."
+        multiline
+      />
     </View>
   );
 }
