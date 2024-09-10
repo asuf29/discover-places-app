@@ -65,7 +65,7 @@ function SharePostScreen({ navigation }: { navigation: NavigationProp<any> }) {
         </View>
       </ScrollView>
       <TextInput
-        style={tw`p-4 border-t border-gray-200`}
+        style={tw`p-4 border-t border-gray-500`}
         placeholder="Write a caption..."
         multiline
       />
