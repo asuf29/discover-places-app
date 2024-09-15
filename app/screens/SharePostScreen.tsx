@@ -3,7 +3,7 @@ import {
   View,
   Text,
   TextInput,
-  Button,
+  FlatList,
   Image,
   TouchableOpacity,
   ScrollView,
@@ -13,6 +13,7 @@ import { FontAwesome, Ionicons } from '@expo/vector-icons';
 import tw from 'twrnc';
 import { NavigationProp } from '@react-navigation/native';
 import axios from 'axios';
+import * as Location from 'expo-location';
 
 function SharePostScreen({ navigation }: { navigation: NavigationProp<any> }) {
   const [image, setImage] = useState<string | null>(null);
@@ -79,6 +80,57 @@ function SharePostScreen({ navigation }: { navigation: NavigationProp<any> }) {
             </TouchableOpacity>
           )}
         </View>
+        {/* <View style={tw`flex-row justify-between items-end`}>
+          <FlatList
+            data={image ? [{ uri: image }] : []}
+            keyExtractor={(item) => item.uri}
+            renderItem={({ item }) => (
+              <Image
+                source={{ uri: item.uri }}
+                style={tw`w-40 h-40 rounded-lg`}
+              />
+            )}
+          />
+          <TouchableOpacity
+            onPress={pickImage}
+            style={tw`bg-blue-500 p-2 w-10 h-10 rounded-full mt-4 items-center justify-center`}
+          >
+            <Text style={tw`text-white font-bold text-lgr`}>+</Text>
+          </TouchableOpacity>
+        </View> */}
+        <View style={tw`mt-4 p-4`}>
+          <Text style={tw`text-sm font-semibold`}>Description</Text>
+          <TextInput
+            placeholder="Add a description..."
+            value={description}
+            onChangeText={setDescription}
+            multiline
+            style={tw`p-2 mt-4 text-gray-500`}
+          />
+        </View>
+        <View
+          style={{
+            flex: 1,
+            height: 1,
+            backgroundColor: 'gray',
+          }}
+        />
+        <View style={tw`flex-row justify-between items-center mt-2 p-4`}>
+          <View style={tw`flex-row items-center`}>
+            <FontAwesome name="map-marker" size={24} color="black" />
+            <TouchableOpacity onPress={pickLocation}>
+              <Text style={tw`font-medium ml-2`}>Add Location</Text>
+            </TouchableOpacity>
+          </View>
+          <Ionicons name="chevron-forward" size={24} color="gray" />
+        </View>
+        <View
+          style={{
+            flex: 1,
+            height: 1,
+            backgroundColor: 'gray',
+          }}
+        />
       </ScrollView>
     </View>
   );
