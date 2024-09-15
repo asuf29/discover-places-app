@@ -9,12 +9,15 @@ import {
   ScrollView,
 } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
-import { Ionicons } from '@expo/vector-icons';
+import { FontAwesome, Ionicons } from '@expo/vector-icons';
 import tw from 'twrnc';
 import { NavigationProp } from '@react-navigation/native';
+import axios from 'axios';
 
 function SharePostScreen({ navigation }: { navigation: NavigationProp<any> }) {
   const [image, setImage] = useState<string | null>(null);
+  const [description, setDescription] = useState<string>('');
+  const [location, setLocation] = useState<string | null>(null);
 
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -32,6 +35,19 @@ function SharePostScreen({ navigation }: { navigation: NavigationProp<any> }) {
 
   const handlePost = () => {
     console.log('Image:', image);
+    console.log('Description:', description);
+    console.log('Location:', location);
+  };
+
+  const pickLocation = async () => {
+    let { status } = await Location.requestForegroundPermissionsAsync();
+    if (status !== 'granted') {
+      console.log('Permission to access location was denied');
+      return;
+    }
+
+    let { coords } = await Location.getCurrentPositionAsync({});
+    setLocation(`Latitude: ${coords.latitude}, Longitude: ${coords.longitude}`);
   };
 
   return (
@@ -48,7 +64,7 @@ function SharePostScreen({ navigation }: { navigation: NavigationProp<any> }) {
         </TouchableOpacity>
       </View>
 
-      <ScrollView style={tw`flex-1 p-4 ml-4`}>
+      <ScrollView style={tw`flex-1 p-4`}>
         <View style={tw`items-center`}>
           {image ? (
             <TouchableOpacity onPress={pickImage}>
@@ -64,11 +80,6 @@ function SharePostScreen({ navigation }: { navigation: NavigationProp<any> }) {
           )}
         </View>
       </ScrollView>
-      <TextInput
-        style={tw`p-4 border-t border-gray-500`}
-        placeholder="Write a caption..."
-        multiline
-      />
     </View>
   );
 }
