@@ -3,18 +3,22 @@ import {
   View,
   Text,
   TextInput,
-  Button,
+  FlatList,
   Image,
   TouchableOpacity,
   ScrollView,
 } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
-import { Ionicons } from '@expo/vector-icons';
+import { FontAwesome, Ionicons } from '@expo/vector-icons';
 import tw from 'twrnc';
 import { NavigationProp } from '@react-navigation/native';
+import axios from 'axios';
+import * as Location from 'expo-location';
 
 function SharePostScreen({ navigation }: { navigation: NavigationProp<any> }) {
   const [image, setImage] = useState<string | null>(null);
+  const [description, setDescription] = useState<string>('');
+  const [location, setLocation] = useState<string | null>(null);
 
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -32,6 +36,19 @@ function SharePostScreen({ navigation }: { navigation: NavigationProp<any> }) {
 
   const handlePost = () => {
     console.log('Image:', image);
+    console.log('Description:', description);
+    console.log('Location:', location);
+  };
+
+  const pickLocation = async () => {
+    let { status } = await Location.requestForegroundPermissionsAsync();
+    if (status !== 'granted') {
+      console.log('Permission to access location was denied');
+      return;
+    }
+
+    let { coords } = await Location.getCurrentPositionAsync({});
+    setLocation(`Latitude: ${coords.latitude}, Longitude: ${coords.longitude}`);
   };
 
   return (
@@ -48,7 +65,7 @@ function SharePostScreen({ navigation }: { navigation: NavigationProp<any> }) {
         </TouchableOpacity>
       </View>
 
-      <ScrollView style={tw`flex-1 p-4 ml-4`}>
+      <ScrollView style={tw`flex-1 p-4`}>
         <View style={tw`items-center`}>
           {image ? (
             <TouchableOpacity onPress={pickImage}>
@@ -63,12 +80,58 @@ function SharePostScreen({ navigation }: { navigation: NavigationProp<any> }) {
             </TouchableOpacity>
           )}
         </View>
+        {/* <View style={tw`flex-row justify-between items-end`}>
+          <FlatList
+            data={image ? [{ uri: image }] : []}
+            keyExtractor={(item) => item.uri}
+            renderItem={({ item }) => (
+              <Image
+                source={{ uri: item.uri }}
+                style={tw`w-40 h-40 rounded-lg`}
+              />
+            )}
+          />
+          <TouchableOpacity
+            onPress={pickImage}
+            style={tw`bg-blue-500 p-2 w-10 h-10 rounded-full mt-4 items-center justify-center`}
+          >
+            <Text style={tw`text-white font-bold text-lgr`}>+</Text>
+          </TouchableOpacity>
+        </View> */}
+        <View style={tw`mt-4 p-4`}>
+          <Text style={tw`text-sm font-semibold`}>Description</Text>
+          <TextInput
+            placeholder="Add a description..."
+            value={description}
+            onChangeText={setDescription}
+            multiline
+            style={tw`p-2 mt-4 text-gray-500`}
+          />
+        </View>
+        <View
+          style={{
+            flex: 1,
+            height: 1,
+            backgroundColor: 'gray',
+          }}
+        />
+        <View style={tw`flex-row justify-between items-center mt-2 p-4`}>
+          <View style={tw`flex-row items-center`}>
+            <FontAwesome name="map-marker" size={24} color="black" />
+            <TouchableOpacity onPress={pickLocation}>
+              <Text style={tw`font-medium ml-2`}>Add Location</Text>
+            </TouchableOpacity>
+          </View>
+          <Ionicons name="chevron-forward" size={24} color="gray" />
+        </View>
+        <View
+          style={{
+            flex: 1,
+            height: 1,
+            backgroundColor: 'gray',
+          }}
+        />
       </ScrollView>
-      <TextInput
-        style={tw`p-4 border-t border-gray-500`}
-        placeholder="Write a caption..."
-        multiline
-      />
     </View>
   );
 }
