@@ -8,7 +8,8 @@ import { useNavigation } from '@react-navigation/native';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import 'react-native-get-random-values';
 import { v4 as uuidv4 } from 'uuid';
-import { GEOCODING_API_KEY } from '@env';
+//import { GEOCODING_API_KEY } from '@env';
+const GEOCODING_API_KEY = process.env.GEOCODING_API_KEY;
 
 const myUniqueId = uuidv4();
 console.log(myUniqueId);
@@ -117,7 +118,7 @@ const MapScreen = () => {
             }
           }}
           query={{
-            key: process.env.GEOCODING_API_KEY,
+            key: GEOCODING_API_KEY,
             language: 'en',
           }}
           fetchDetails={true}
