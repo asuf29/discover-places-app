@@ -1,21 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import {
-  View,
-  StyleSheet,
-  TouchableOpacity,
-  TextInput,
-  Text,
-} from 'react-native';
+import { View, StyleSheet, TouchableOpacity, Text } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import MapView, { Marker, Callout } from 'react-native-maps';
 import * as Location from 'expo-location';
 import tw from 'twrnc';
 import { useNavigation } from '@react-navigation/native';
-import ViewDetails from './ViewDetails';
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+import 'react-native-get-random-values';
+import { v4 as uuidv4 } from 'uuid';
+//import { GEOCODING_API_KEY } from '@env';
+const GEOCODING_API_KEY = process.env.GEOCODING_API_KEY;
+
+const myUniqueId = uuidv4();
+console.log(myUniqueId);
 
 const MapScreen = () => {
-  const [searchQuery, setSearchQuery] = useState('');
-  const navigation = useNavigation();
   const [mapRegion, setMapRegion] = useState({
     latitude: 37.78825,
     longitude: -122.4324,
@@ -43,6 +42,8 @@ const MapScreen = () => {
       },
     },
   ]);
+
+  const navigation = useNavigation();
 
   const handleViewDetails = () => {
     navigation.navigate('ViewDetails');
@@ -101,18 +102,38 @@ const MapScreen = () => {
         ))}
       </MapView>
       <View
-        style={tw`absolute top-12 left-8 right-8 flex-row items-center p-2 rounded-md shadow-md bg-white`}
+        style={tw`absolute top-10 left-6 right-6 p-3 rounded-lg shadow-md bg-white z-10`}
       >
-        <TouchableOpacity>
-          <FontAwesome name="search" size={16} color="black" />
-        </TouchableOpacity>
-        <TextInput
-          placeholder="Search on map..."
-          style={tw`flex-1 text-black ml-2`}
-          value={searchQuery}
-          autoCapitalize="none"
-          autoCorrect={false}
-          onChangeText={(text) => setSearchQuery(text)}
+        <GooglePlacesAutocomplete
+          placeholder="Search for a place"
+          onPress={(data, details = null) => {
+            if (details && details.geometry && details.geometry.location) {
+              const { lat, lng } = details.geometry.location;
+              setMapRegion({
+                latitude: lat,
+                longitude: lng,
+                latitudeDelta: 0.0922,
+                longitudeDelta: 0.0421,
+              });
+            }
+          }}
+          query={{
+            key: GEOCODING_API_KEY,
+            language: 'en',
+          }}
+          fetchDetails={true}
+          styles={{
+            container: {},
+            textInput: {
+              backgroundColor: '#f1f1f1',
+              height: 44,
+              borderRadius: 10,
+              paddingVertical: 5,
+              paddingHorizontal: 15,
+              fontSize: 16,
+            },
+            listView: { backgroundColor: 'white' },
+          }}
         />
       </View>
     </View>
