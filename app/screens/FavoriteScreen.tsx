@@ -40,6 +40,30 @@ const photos = [
     name: 'Cappadocia',
     location: 'Turkey',
   },
+  {
+    id: 7,
+    image: require('../assets/images/santorini.jpeg'),
+    name: 'Santorini',
+    location: 'Greece',
+  },
+  {
+    id: 8,
+    image: require('../assets/images/pamukkale.jpeg'),
+    name: 'Pamukkale',
+    location: 'Turkey',
+  },
+  {
+    id: 9,
+    image: require('../assets/images/beach.jpeg'),
+    name: 'Beach',
+    location: 'Turkey',
+  },
+  {
+    id: 10,
+    image: require('../assets/images/Cappadocia.jpeg'),
+    name: 'Cappadocia',
+    location: 'Turkey',
+  },
 ];
 
 function FavoriteScreen() {
@@ -61,7 +85,7 @@ function FavoriteScreen() {
 
   return (
     <View style={tw`flex-1 items-center justify-center mt-15`}>
-      <Text style={tw`font-bold text-lg`}>Your favorite posts</Text>
+      <Text style={tw`font-semibold text-lg`}>Your favorite posts</Text>
       <View style={tw`mt-5 px-8`}>
         <FlatList
           data={photos}

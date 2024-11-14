@@ -7,6 +7,7 @@ import {
   ImageBackground,
   TouchableOpacity,
   FlatList,
+  ScrollView,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import tw from 'twrnc';
@@ -53,52 +54,57 @@ function ProfileScreen() {
   );
 
   return (
-    <View style={tw`flex-1`}>
-      <ImageBackground
-        source={require('../assets/images/beach.jpeg')}
-        style={tw`w-full h-40`}
-      >
-        <View style={tw`items-end mt-8 px-5`}>
-          <TouchableOpacity onPress={handleEditProfile}>
-            <FontAwesome name="ellipsis-v" size={24} color="white" />
-          </TouchableOpacity>
-        </View>
-        <View style={tw`items-center mt-10`}>
-          <View style={tw`items-center justify-between w-full px-10`}>
-            <Image
-              source={require('../assets/images/asuf.jpg')}
-              style={tw`w-32 h-32 rounded-full border-4 border-white`}
-            />
-            <View>
-              <Text style={tw`text-lg font-bold`}>Asu Kosar</Text>
-              <Text style={tw`text-base text-gray-500`}>@asukosar</Text>
+    <ScrollView contentContainerStyle={tw`flex-grow`}>
+      <View style={tw`flex-1`}>
+        <ImageBackground
+          source={require('../assets/images/beach.jpeg')}
+          style={tw`w-full h-40`}
+        >
+          <View style={tw`items-end mt-8 px-5`}>
+            <TouchableOpacity onPress={handleEditProfile}>
+              <FontAwesome name="ellipsis-v" size={24} color="white" />
+            </TouchableOpacity>
+          </View>
+          <View style={tw`items-center mt-10`}>
+            <View style={tw`items-center justify-between w-full px-10`}>
+              <Image
+                source={require('../assets/images/asuf.jpg')}
+                style={tw`w-32 h-32 rounded-full border-4 border-white`}
+              />
+              <View style={tw`items-center`}>
+                <Text style={tw`text-lg font-bold`}>Asu Kosar</Text>
+                <Text style={tw`text-base text-gray-500`}>@asukosar</Text>
+              </View>
             </View>
           </View>
+        </ImageBackground>
+
+        <View style={tw`flex-row items-center mt-30 justify-around px-2`}>
+          <View style={tw`items-center`}>
+            <Text style={tw`text-base mt-1 font-bold`}>29</Text>
+            <Text style={tw`text-sm text-gray-500`}>Following</Text>
+          </View>
+          <View style={tw`items-center mr-4`}>
+            <Text style={tw`text-base mt-1 font-bold`}>10</Text>
+            <Text style={tw`text-sm text-gray-500`}>Followers</Text>
+          </View>
+          <View style={tw`items-center`}>
+            <Text style={tw`text-base mt-1 font-bold`}>2001</Text>
+            <Text style={tw`text-sm text-gray-500`}>Photos</Text>
+          </View>
         </View>
-      </ImageBackground>
-      <View style={tw`flex-row items-center mt-30 justify-around px-2`}>
-        <View style={tw`items-center`}>
-          <Text style={tw`text-lg mt-1 font-bold`}>29</Text>
-          <Text style={tw`text-base text-gray-500`}>Following</Text>
-        </View>
-        <View style={tw`items-center mr-4`}>
-          <Text style={tw`text-lg mt-1 font-bold`}>10</Text>
-          <Text style={tw`text-base text-gray-500`}>Followers</Text>
-        </View>
-        <View style={tw`items-center`}>
-          <Text style={tw`text-lg mt-1 font-bold`}>2001</Text>
-          <Text style={tw`text-base text-gray-500`}>Photos</Text>
+
+        <View style={tw`mt-5 px-4`}>
+          <FlatList
+            data={photos.map((photo) => photo.image)}
+            renderItem={renderItem}
+            keyExtractor={(item) => item}
+            numColumns={2}
+            scrollEnabled={false} // Disable scrolling for FlatList to rely on ScrollView
+          />
         </View>
       </View>
-      <View style={tw`mt-5 px-8`}>
-        <FlatList
-          data={photos.map((photo) => photo.image)}
-          renderItem={renderItem}
-          keyExtractor={(item) => item}
-          numColumns={2}
-        />
-      </View>
-    </View>
+    </ScrollView>
   );
 }
 
