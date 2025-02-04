@@ -16,6 +16,7 @@ import ViewDetails from './screens/ViewDetails';
 import EditProfileScreen from './screens/EditProfileScreen';
 import TopTripsDetails from './screens/TopTripsDetails';
 import NotificationsScreen from './screens/NotificationsScreen';
+import PhotoDetailScreen from './screens/PhotoDetailScreen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -122,6 +123,7 @@ const App = () => {
         <Stack.Screen name="Favorite" component={FavoriteScreen} />
         <Stack.Screen name="Profile" component={ProfileScreen} />
         <Stack.Screen name="EditProfile" component={EditProfileScreen} />
+        <Stack.Screen name="PhotoDetail" component={PhotoDetailScreen} />
         <Stack.Screen name="ViewDetails" component={ViewDetails} />
         <Stack.Screen name="TopTrips" component={TopTripsDetails} />
         <Stack.Screen name="Notifications" component={NotificationsScreen} />

@@ -2,80 +2,61 @@ import { FontAwesome } from '@expo/vector-icons';
 import React from 'react';
 import { Text, View, Image, FlatList, TouchableOpacity } from 'react-native';
 import tw from 'twrnc';
+import { useNavigation } from '@react-navigation/native';
 
 const photos = [
   {
     id: 1,
     image: require('../assets/images/beach.jpeg'),
-    name: 'Beach',
+    title: 'Beach',
     location: 'Turkey',
+    description:
+      'A beautiful beach in Turkey with clear waters and golden sand.',
   },
   {
     id: 2,
     image: require('../assets/images/Cappadocia.jpeg'),
-    name: 'Cappadocia',
+    title: 'Cappadocia',
     location: 'Turkey',
+    description:
+      'Cappadocia, famous for its fairy chimneys and hot air balloons.',
   },
   {
     id: 3,
     image: require('../assets/images/santorini.jpeg'),
-    name: 'Santorini',
+    title: 'Santorini',
     location: 'Greece',
+    description:
+      'Santorini, known for its stunning sunsets and whitewashed buildings.',
   },
   {
     id: 4,
     image: require('../assets/images/pamukkale.jpeg'),
-    name: 'Pamukkale',
+    title: 'Pamukkale',
     location: 'Turkey',
-  },
-  {
-    id: 5,
-    image: require('../assets/images/beach.jpeg'),
-    name: 'Beach',
-    location: 'Turkey',
-  },
-  {
-    id: 6,
-    image: require('../assets/images/Cappadocia.jpeg'),
-    name: 'Cappadocia',
-    location: 'Turkey',
-  },
-  {
-    id: 7,
-    image: require('../assets/images/santorini.jpeg'),
-    name: 'Santorini',
-    location: 'Greece',
-  },
-  {
-    id: 8,
-    image: require('../assets/images/pamukkale.jpeg'),
-    name: 'Pamukkale',
-    location: 'Turkey',
-  },
-  {
-    id: 9,
-    image: require('../assets/images/beach.jpeg'),
-    name: 'Beach',
-    location: 'Turkey',
-  },
-  {
-    id: 10,
-    image: require('../assets/images/Cappadocia.jpeg'),
-    name: 'Cappadocia',
-    location: 'Turkey',
+    description:
+      'Pamukkale, famous for its hot springs and terraces of white mineral-rich deposits.',
   },
 ];
 
 function FavoriteScreen() {
-  const renderItem = ({ item }: { item: any }) => (
+  const navigation = useNavigation();
+
+  const handlePhotoPress = (photo: any) => {
+    navigation.navigate('PhotoDetail', { photo });
+  };
+
+  const renderItem = ({ item }) => (
     <View style={tw`w-1/2 p-1`}>
       <View style={tw`relative`}>
-        <Image source={item.image} style={tw`w-full h-40 rounded-lg`} />
+        <TouchableOpacity onPress={() => handlePhotoPress(item)}>
+          <Image source={item.image} style={tw`w-full h-40 rounded-lg`} />
+        </TouchableOpacity>
         <TouchableOpacity style={tw`absolute bottom-2 right-2`}>
           <FontAwesome name="heart" size={14} color="white" />
         </TouchableOpacity>
       </View>
-      <Text style={tw`text-sm font-semibold mt-2`}>{item.name}</Text>
+      <Text style={tw`text-sm font-semibold mt-2`}>{item.title}</Text>
       <View style={tw`flex-row items-center mt-1`}>
         <FontAwesome name="map-marker" size={14} color="red" />
         <Text style={tw`text-xs text-gray-700 ml-1`}>{item.location}</Text>

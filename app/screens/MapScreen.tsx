@@ -8,6 +8,7 @@ import { useNavigation } from '@react-navigation/native';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import 'react-native-get-random-values';
 import { v4 as uuidv4 } from 'uuid';
+import ViewDetails from './ViewDetails';
 //import { GEOCODING_API_KEY } from '@env';
 const GEOCODING_API_KEY = process.env.GEOCODING_API_KEY;
 

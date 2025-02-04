@@ -3,7 +3,6 @@ import {
   View,
   Text,
   TextInput,
-  FlatList,
   Image,
   TouchableOpacity,
   ScrollView,
@@ -12,30 +11,27 @@ import * as ImagePicker from 'expo-image-picker';
 import { FontAwesome, Ionicons } from '@expo/vector-icons';
 import tw from 'twrnc';
 import { NavigationProp } from '@react-navigation/native';
-import axios from 'axios';
 import * as Location from 'expo-location';
 
 function SharePostScreen({ navigation }: { navigation: NavigationProp<any> }) {
-  const [image, setImage] = useState<string | null>(null);
+  const [images, setImages] = useState<string[]>([]);
   const [description, setDescription] = useState<string>('');
   const [location, setLocation] = useState<string | null>(null);
 
-  const pickImage = async () => {
+  const pickImages = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      allowsEditing: true,
-      aspect: [4, 3],
+      allowsMultipleSelection: true,
       quality: 1,
     });
 
-    if (result.assets && result.assets.length > 0) {
-      setImage(result.assets[0].uri);
-      console.log('Selected Image URI:', result.assets[0].uri);
+    if (result.assets) {
+      setImages(result.assets.map((asset) => asset.uri));
     }
   };
 
   const handlePost = () => {
-    console.log('Image:', image);
+    console.log('Images:', images);
     console.log('Description:', description);
     console.log('Location:', location);
   };
@@ -43,12 +39,11 @@ function SharePostScreen({ navigation }: { navigation: NavigationProp<any> }) {
   const pickLocation = async () => {
     let { status } = await Location.requestForegroundPermissionsAsync();
     if (status !== 'granted') {
-      console.log('Permission to access location was denied');
+      alert('Permission to access location was denied');
       return;
     }
-
     let { coords } = await Location.getCurrentPositionAsync({});
-    setLocation(`Latitude: ${coords.latitude}, Longitude: ${coords.longitude}`);
+    setLocation(`Lat: ${coords.latitude}, Lon: ${coords.longitude}`);
   };
 
   return (
@@ -67,37 +62,26 @@ function SharePostScreen({ navigation }: { navigation: NavigationProp<any> }) {
 
       <ScrollView style={tw`flex-1 p-4`}>
         <View style={tw`items-center`}>
-          {image ? (
-            <TouchableOpacity onPress={pickImage}>
-              <Image source={{ uri: image }} style={tw`w-50 h-50 rounded-lg`} />
-            </TouchableOpacity>
+          {images.length > 0 ? (
+            <ScrollView horizontal>
+              {images.map((uri, index) => (
+                <Image
+                  key={index}
+                  source={{ uri }}
+                  style={tw`w-40 h-40 mr-2 rounded-lg`}
+                />
+              ))}
+            </ScrollView>
           ) : (
             <TouchableOpacity
-              onPress={pickImage}
+              onPress={pickImages}
               style={tw`w-50 h-50 bg-gray-300 rounded-lg justify-center items-center`}
             >
               <Text style={tw`text-gray-500`}>Add Image</Text>
             </TouchableOpacity>
           )}
         </View>
-        {/* <View style={tw`flex-row justify-between items-end`}>
-          <FlatList
-            data={image ? [{ uri: image }] : []}
-            keyExtractor={(item) => item.uri}
-            renderItem={({ item }) => (
-              <Image
-                source={{ uri: item.uri }}
-                style={tw`w-40 h-40 rounded-lg`}
-              />
-            )}
-          />
-          <TouchableOpacity
-            onPress={pickImage}
-            style={tw`bg-blue-500 p-2 w-10 h-10 rounded-full mt-4 items-center justify-center`}
-          >
-            <Text style={tw`text-white font-bold text-lgr`}>+</Text>
-          </TouchableOpacity>
-        </View> */}
+
         <View style={tw`mt-4 p-4`}>
           <Text style={tw`text-sm font-semibold`}>Description</Text>
           <TextInput
@@ -105,17 +89,13 @@ function SharePostScreen({ navigation }: { navigation: NavigationProp<any> }) {
             value={description}
             onChangeText={setDescription}
             multiline
-            style={tw`p-2 mt-4 text-gray-500`}
+            style={tw`p-2 mt-4 text-gray-500 border rounded-lg border-gray-300`}
           />
         </View>
+
         <View
-          style={{
-            flex: 1,
-            height: 1,
-            backgroundColor: 'gray',
-          }}
-        />
-        <View style={tw`flex-row justify-between items-center mt-2 p-4`}>
+          style={tw`flex-row justify-between items-center mt-2 p-4 border-t border-gray-300`}
+        >
           <View style={tw`flex-row items-center`}>
             <FontAwesome name="map-marker" size={24} color="black" />
             <TouchableOpacity onPress={pickLocation}>
@@ -124,13 +104,10 @@ function SharePostScreen({ navigation }: { navigation: NavigationProp<any> }) {
           </View>
           <Ionicons name="chevron-forward" size={24} color="gray" />
         </View>
-        <View
-          style={{
-            flex: 1,
-            height: 1,
-            backgroundColor: 'gray',
-          }}
-        />
+
+        {location && (
+          <Text style={tw`text-gray-600 text-center mt-2`}>{location}</Text>
+        )}
       </ScrollView>
     </View>
   );
