@@ -6,6 +6,7 @@ import {
   TextInput,
   StyleSheet,
   View,
+  Alert,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import tw from 'twrnc';
@@ -13,12 +14,12 @@ import { registerUser } from '../services/authService';
 
 function RegisterScreen() {
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
+    first_name: '',
+    last_name: '',
     username: '',
     email: '',
     password: '',
-    confirmPassword: '',
+    password_confirmation: '',
   });
 
   const navigation = useNavigation();
@@ -31,6 +32,7 @@ function RegisterScreen() {
     try {
       const response = await registerUser(formData);
       console.log(response);
+      Alert.alert('Success', 'Register successful! 🎉');
       navigation.navigate('Login');
     } catch (error) {
       console.error('Registration failed:', error);
@@ -50,7 +52,7 @@ function RegisterScreen() {
         placeholder="First Name"
         placeholderTextColor="#A0A0A0"
         autoCapitalize="words"
-        onChangeText={(text) => handleChange('firstName', text)}
+        onChangeText={(text) => handleChange('first_name', text)}
       />
 
       <TextInput
@@ -58,7 +60,7 @@ function RegisterScreen() {
         placeholder="Last Name"
         placeholderTextColor="#A0A0A0"
         autoCapitalize="words"
-        onChangeText={(text) => handleChange('lastName', text)}
+        onChangeText={(text) => handleChange('last_name', text)}
       />
 
       <TextInput
@@ -93,7 +95,7 @@ function RegisterScreen() {
         placeholderTextColor="#A0A0A0"
         secureTextEntry
         autoCapitalize="none"
-        onChangeText={(text) => handleChange('confirmPassword', text)}
+        onChangeText={(text) => handleChange('password_confirmation', text)}
       />
 
       <TouchableOpacity
