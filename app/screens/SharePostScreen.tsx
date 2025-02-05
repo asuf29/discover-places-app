@@ -17,6 +17,7 @@ function SharePostScreen({ navigation }: { navigation: NavigationProp<any> }) {
   const [images, setImages] = useState<string[]>([]);
   const [description, setDescription] = useState<string>('');
   const [location, setLocation] = useState<string | null>(null);
+  const [title, setTitle] = useState<string>('');
 
   const pickImages = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -48,15 +49,10 @@ function SharePostScreen({ navigation }: { navigation: NavigationProp<any> }) {
 
   return (
     <View style={tw`flex-1 bg-white`}>
-      <View
-        style={tw`flex-row justify-between items-center p-4 border-b border-gray-200 mt-4`}
-      >
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Ionicons name="arrow-back" size={24} color="black" />
-        </TouchableOpacity>
+      <View style={tw`flex-row justify-between items-center p-4 mt-4`}>
         <Text style={tw`text-lg font-semibold ml-8`}>New Post</Text>
         <TouchableOpacity onPress={handlePost}>
-          <Text style={tw`text-blue-500 text-lg font-semibold`}>Share</Text>
+          <Text style={tw`text-blue-500 text-lg font-bold`}>Share</Text>
         </TouchableOpacity>
       </View>
 
@@ -82,8 +78,19 @@ function SharePostScreen({ navigation }: { navigation: NavigationProp<any> }) {
           )}
         </View>
 
-        <View style={tw`mt-4 p-4`}>
-          <Text style={tw`text-sm font-semibold`}>Description</Text>
+        <View style={tw`mt-2 rounded-t-3xl p-6`}>
+          <Text style={tw`text-lg font-bold`}>Title</Text>
+          <TextInput
+            placeholder="Add a title..."
+            value={title}
+            onChangeText={setTitle}
+            multiline
+            style={tw`p-2 mt-4 text-gray-500 border rounded-lg border-gray-300`}
+          />
+        </View>
+
+        <View style={tw`mt-2 rounded-t-3xl p-6`}>
+          <Text style={tw`text-lg font-bold`}>Description</Text>
           <TextInput
             placeholder="Add a description..."
             value={description}
@@ -94,15 +101,14 @@ function SharePostScreen({ navigation }: { navigation: NavigationProp<any> }) {
         </View>
 
         <View
-          style={tw`flex-row justify-between items-center mt-2 p-4 border-t border-gray-300`}
+          style={tw`flex-row justify-between items-center p-6 rounded-t-3xl mt-2`}
         >
           <View style={tw`flex-row items-center`}>
-            <FontAwesome name="map-marker" size={24} color="black" />
+            <FontAwesome name="map-marker" size={24} color="red" />
             <TouchableOpacity onPress={pickLocation}>
-              <Text style={tw`font-medium ml-2`}>Add Location</Text>
+              <Text style={tw`font-bold text-lg ml-2`}>Add Location</Text>
             </TouchableOpacity>
           </View>
-          <Ionicons name="chevron-forward" size={24} color="gray" />
         </View>
 
         {location && (
