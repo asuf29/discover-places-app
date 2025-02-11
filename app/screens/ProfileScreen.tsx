@@ -1,5 +1,5 @@
 import { FontAwesome } from '@expo/vector-icons';
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   Text,
   View,
@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import tw from 'twrnc';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const photos = [
   {
@@ -59,6 +60,18 @@ const photos = [
 
 function ProfileScreen() {
   const navigation = useNavigation();
+  const [user, setUser] = React.useState<any>(null);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const userData = await AsyncStorage.getItem('user');
+      if (userData) {
+        setUser(JSON.parse(userData));
+      }
+    };
+
+    fetchUser();
+  }, []);
 
   const handleEditProfile = () => {
     navigation.navigate('EditProfile');
@@ -96,8 +109,8 @@ function ProfileScreen() {
                 style={tw`w-32 h-32 rounded-full border-4 border-white`}
               />
               <View style={tw`items-center mt-2`}>
-                <Text style={tw`text-lg font-bold`}>Asu Kosar</Text>
-                <Text style={tw`text-base text-gray-500`}>@asukosar</Text>
+                <Text style={tw`text-lg font-bold`}>Asude Fışkın</Text>
+                <Text style={tw`text-base text-gray-500`}>@asuf</Text>
               </View>
             </View>
           </View>

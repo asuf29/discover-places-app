@@ -1,6 +1,7 @@
 import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const API_URL = 'https://9eff-151-250-47-163.ngrok-free.app/api';
+const API_URL = 'https://315a-151-250-47-163.ngrok-free.app/api';
 
 export const registerUser = async (userData: {
   first_name: string;
@@ -22,6 +23,12 @@ export const registerUser = async (userData: {
 export const loginUser = async (loginData: { email: string; password: string }) => {
   try {
     const response = await axios.post(`${API_URL}/login`,  loginData );
+    console.log('Login Response:', response.data);
+
+    if(response.data.user) {
+      await AsyncStorage.setItem('user', JSON.stringify(response.data.user));
+    }
+
     return response.data;
   } catch (error) {
     console.error(error);

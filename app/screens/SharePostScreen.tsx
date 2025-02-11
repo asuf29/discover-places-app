@@ -50,7 +50,7 @@ function SharePostScreen({ navigation }: { navigation: NavigationProp<any> }) {
   return (
     <View style={tw`flex-1 bg-white`}>
       <View style={tw`flex-row justify-between items-center p-4 mt-4`}>
-        <Text style={tw`text-lg font-semibold ml-8`}>New Post</Text>
+        <Text style={tw`text-lg font-bold ml-2`}>New Post</Text>
         <TouchableOpacity onPress={handlePost}>
           <Text style={tw`text-blue-500 text-lg font-bold`}>Share</Text>
         </TouchableOpacity>
@@ -64,16 +64,21 @@ function SharePostScreen({ navigation }: { navigation: NavigationProp<any> }) {
                 <Image
                   key={index}
                   source={{ uri }}
-                  style={tw`w-40 h-40 mr-2 rounded-lg`}
+                  style={tw`w-50 h-50 mr-2 rounded-lg`}
                 />
               ))}
             </ScrollView>
           ) : (
             <TouchableOpacity
               onPress={pickImages}
-              style={tw`w-50 h-50 bg-gray-300 rounded-lg justify-center items-center`}
+              style={tw`w-50 h-50 bg-gray-100 rounded-lg justify-center items-center`}
             >
-              <Text style={tw`text-gray-500`}>Add Image</Text>
+              <Image
+                source={require('../assets/images/gallery.png')}
+                style={tw`w-20 h-20`}
+                resizeMode="contain"
+              />
+              <Text style={tw`text-gray-500 mt-2`}>Add Image</Text>
             </TouchableOpacity>
           )}
         </View>
