@@ -7,7 +7,6 @@ import {
   ImageBackground,
   TouchableOpacity,
   FlatList,
-  ScrollView,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import tw from 'twrnc';
@@ -90,57 +89,54 @@ function ProfileScreen() {
   );
 
   return (
-    <ScrollView contentContainerStyle={tw`flex-grow`}>
-      <View style={tw`flex-1`}>
-        <ImageBackground
-          source={require('../assets/images/beach.jpeg')}
-          style={tw`w-full h-40`}
-          resizeMode="cover"
-        >
-          <View style={tw`items-end mt-8 px-5`}>
-            <TouchableOpacity onPress={handleEditProfile}>
-              <FontAwesome name="ellipsis-v" size={24} color="white" />
-            </TouchableOpacity>
-          </View>
-          <View style={tw`items-center mt-10`}>
-            <View style={tw`items-center w-full px-10`}>
-              <Image
-                source={require('../assets/images/asuf.jpg')}
-                style={tw`w-32 h-32 rounded-full border-4 border-white`}
-              />
-              <View style={tw`items-center mt-2`}>
-                <Text style={tw`text-lg font-bold`}>Asude Fışkın</Text>
-                <Text style={tw`text-base text-gray-500`}>@asuf</Text>
+    <FlatList
+      data={photos}
+      renderItem={renderItem}
+      keyExtractor={(item) => item.id.toString()}
+      numColumns={2}
+      ListHeaderComponent={
+        <>
+          <ImageBackground
+            source={require('../assets/images/beach.jpeg')}
+            style={tw`w-full h-40`}
+            resizeMode="cover"
+          >
+            <View style={tw`items-end mt-8 px-5`}>
+              <TouchableOpacity onPress={handleEditProfile}>
+                <FontAwesome name="ellipsis-v" size={24} color="white" />
+              </TouchableOpacity>
+            </View>
+            <View style={tw`items-center mt-10`}>
+              <View style={tw`items-center w-full px-10`}>
+                <Image
+                  source={require('../assets/images/asuf.jpg')}
+                  style={tw`w-32 h-32 rounded-full border-4 border-white`}
+                />
+                <View style={tw`items-center mt-2`}>
+                  <Text style={tw`text-lg font-bold`}>Asude Fışkın</Text>
+                  <Text style={tw`text-base text-gray-500`}>@asuf</Text>
+                </View>
               </View>
             </View>
-          </View>
-        </ImageBackground>
+          </ImageBackground>
 
-        <View style={tw`flex-row items-center mt-34 justify-around px-2`}>
-          <View style={tw`items-center`}>
-            <Text style={tw`text-base font-bold`}>29</Text>
-            <Text style={tw`text-sm text-gray-500`}>Following</Text>
+          <View style={tw`flex-row items-center mt-32 justify-around px-2`}>
+            <View style={tw`items-center`}>
+              <Text style={tw`text-base font-bold`}>29</Text>
+              <Text style={tw`text-sm text-gray-500`}>Following</Text>
+            </View>
+            <View style={tw`items-center mr-4`}>
+              <Text style={tw`text-base font-bold`}>10</Text>
+              <Text style={tw`text-sm text-gray-500`}>Followers</Text>
+            </View>
+            <View style={tw`items-center`}>
+              <Text style={tw`text-base font-bold`}>2001</Text>
+              <Text style={tw`text-sm text-gray-500`}>Photos</Text>
+            </View>
           </View>
-          <View style={tw`items-center mr-4`}>
-            <Text style={tw`text-base font-bold`}>10</Text>
-            <Text style={tw`text-sm text-gray-500`}>Followers</Text>
-          </View>
-          <View style={tw`items-center`}>
-            <Text style={tw`text-base font-bold`}>2001</Text>
-            <Text style={tw`text-sm text-gray-500`}>Photos</Text>
-          </View>
-        </View>
-
-        <View style={tw`mt-2 px-4 pb-10`}>
-          <FlatList
-            data={photos}
-            renderItem={renderItem}
-            keyExtractor={(item) => item.id.toString()}
-            numColumns={2}
-          />
-        </View>
-      </View>
-    </ScrollView>
+        </>
+      }
+    />
   );
 }
 
