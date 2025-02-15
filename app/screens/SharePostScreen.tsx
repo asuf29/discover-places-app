@@ -52,7 +52,7 @@ function SharePostScreen({ navigation }: { navigation: NavigationProp<any> }) {
       <View style={tw`flex-row justify-between items-center p-4 mt-4`}>
         <Text style={tw`text-lg font-bold ml-2`}>New Post</Text>
         <TouchableOpacity onPress={handlePost}>
-          <Text style={tw`text-blue-500 text-lg font-bold`}>Share</Text>
+          <Text style={tw`text-blue-500 text-lg font-bold px-2`}>Share</Text>
         </TouchableOpacity>
       </View>
 
@@ -61,11 +61,17 @@ function SharePostScreen({ navigation }: { navigation: NavigationProp<any> }) {
           {images.length > 0 ? (
             <ScrollView horizontal>
               {images.map((uri, index) => (
-                <Image
-                  key={index}
-                  source={{ uri }}
-                  style={tw`w-50 h-50 mr-2 rounded-lg`}
-                />
+                <View key={index} style={tw`relative mr-2`}>
+                  <Image source={{ uri }} style={tw`w-50 h-50 rounded-lg`} />
+                  <TouchableOpacity
+                    onPress={() =>
+                      setImages(images.filter((_, i) => i !== index))
+                    }
+                    style={tw`absolute top-2 right-2 bg-white p-1 rounded-full`}
+                  >
+                    <Ionicons name="close" size={24} color="black" />
+                  </TouchableOpacity>
+                </View>
               ))}
             </ScrollView>
           ) : (
@@ -87,10 +93,11 @@ function SharePostScreen({ navigation }: { navigation: NavigationProp<any> }) {
           <Text style={tw`text-lg font-bold`}>Title</Text>
           <TextInput
             placeholder="Add a title..."
+            placeholderTextColor={'#ccc'}
             value={title}
             onChangeText={setTitle}
             multiline
-            style={tw`p-2 mt-4 text-gray-500 border rounded-lg border-gray-300`}
+            style={tw`flex-row items-center bg-white p-3 rounded-lg shadow-md mt-2`}
           />
         </View>
 
@@ -98,27 +105,30 @@ function SharePostScreen({ navigation }: { navigation: NavigationProp<any> }) {
           <Text style={tw`text-lg font-bold`}>Description</Text>
           <TextInput
             placeholder="Add a description..."
+            placeholderTextColor={'#ccc'}
             value={description}
             onChangeText={setDescription}
             multiline
-            style={tw`p-2 mt-4 text-gray-500 border rounded-lg border-gray-300`}
+            style={tw`flex-row items-center bg-white p-3 rounded-lg shadow-md mt-2`}
           />
         </View>
 
-        <View
-          style={tw`flex-row justify-between items-center p-6 rounded-t-3xl mt-2`}
-        >
-          <View style={tw`flex-row items-center`}>
-            <FontAwesome name="map-marker" size={24} color="red" />
+        <View style={tw`mt-2 rounded-t-3xl p-6`}>
+          <View>
             <TouchableOpacity onPress={pickLocation}>
-              <Text style={tw`font-bold text-lg ml-2`}>Add Location</Text>
+              <Text style={tw`font-bold text-lg`}>Add Location</Text>
             </TouchableOpacity>
           </View>
-        </View>
 
-        {location && (
-          <Text style={tw`text-gray-600 text-center mt-2`}>{location}</Text>
-        )}
+          {location && (
+            <View
+              style={tw`flex-row items-center bg-white p-3 rounded-lg shadow-md mt-2`}
+            >
+              <FontAwesome name="map-marker" size={24} color="red" />
+              <Text style={tw`text-gray-600 ml-2`}>{location}</Text>
+            </View>
+          )}
+        </View>
       </ScrollView>
     </View>
   );

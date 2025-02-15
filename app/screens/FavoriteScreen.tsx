@@ -50,7 +50,7 @@ function FavoriteScreen() {
     <View style={tw`w-1/2 p-1`}>
       <View style={tw`relative`}>
         <TouchableOpacity onPress={() => handlePhotoPress(item)}>
-          <Image source={item.image} style={tw`w-full h-40 rounded-lg`} />
+          <Image source={item.image} style={tw`w-full h-60 rounded-lg`} />
         </TouchableOpacity>
         <TouchableOpacity style={tw`absolute bottom-2 right-2`}>
           <FontAwesome name="heart" size={14} color="white" />
@@ -67,7 +67,7 @@ function FavoriteScreen() {
   return (
     <View style={tw`flex-1 items-center justify-center mt-15`}>
       <Text style={tw`font-semibold text-lg`}>Your favorite posts</Text>
-      <View style={tw`mt-5 px-8`}>
+      <View style={tw`mt-5`}>
         <FlatList
           data={photos}
           renderItem={renderItem}
