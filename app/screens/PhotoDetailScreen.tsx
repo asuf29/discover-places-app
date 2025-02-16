@@ -39,7 +39,7 @@ const PhotoDetailScreen = ({ navigation }) => {
           <View style={tw`flex-row justify-between items-center`}>
             <Text style={tw`text-2xl font-bold`}>{photo.title}</Text>
             <Image
-              source={require('../assets/images/asuf.jpg')}
+              source={require('../assets/images/woman.png')}
               style={tw`w-10 h-10 rounded-full`}
             />
           </View>

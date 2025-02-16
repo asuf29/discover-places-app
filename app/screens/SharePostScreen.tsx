@@ -48,11 +48,14 @@ function SharePostScreen({ navigation }: { navigation: NavigationProp<any> }) {
   };
 
   return (
-    <View style={tw`flex-1 bg-white`}>
+    <View style={tw`flex-1`}>
       <View style={tw`flex-row justify-between items-center p-4 mt-4`}>
         <Text style={tw`text-lg font-bold ml-2`}>New Post</Text>
-        <TouchableOpacity onPress={handlePost}>
-          <Text style={tw`text-blue-500 text-lg font-bold px-2`}>Share</Text>
+        <TouchableOpacity
+          onPress={handlePost}
+          style={tw`bg-[#03A9F4] px-4 py-2 rounded-lg shadow-lg items-center`}
+        >
+          <Text style={tw`text-white text-lg font-semibold`}>Share</Text>
         </TouchableOpacity>
       </View>
 

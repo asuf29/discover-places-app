@@ -13,7 +13,7 @@ const posts = [
     id: 1,
     username: 'john_doe',
     fullName: 'John Doe',
-    profileImage: require('../assets/images/user1.jpeg'),
+    profileImage: require('../assets/images/man.png'),
     postImage: require('../assets/images/santorini.jpeg'),
     description: 'Amazing view from my trip!',
     likes: 120,
@@ -23,7 +23,7 @@ const posts = [
     id: 2,
     username: 'jane_smith',
     fullName: 'Jane Smith',
-    profileImage: require('../assets/images/user2.jpeg'),
+    profileImage: require('../assets/images/man.png'),
     postImage: require('../assets/images/pamukkale.jpeg'),
     description: 'Had a great time hiking!',
     likes: 150,
@@ -44,7 +44,7 @@ function HomeScreen() {
         <View style={tw`flex-row items-center justify-between w-full`}>
           <View style={tw`flex-row items-center`}>
             <Image
-              source={require('../assets/images/asuf.jpg')}
+              source={require('../assets/images/woman2.png')}
               style={tw`w-10 h-10 rounded-full mr-4`}
             />
             <Text style={tw`text-base font-semibold`}>Hi, Asu!</Text>

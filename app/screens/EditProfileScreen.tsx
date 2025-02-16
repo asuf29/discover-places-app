@@ -16,7 +16,7 @@ import ProfileScreen from './ProfileScreen';
 function EditProfileScreen() {
   const navigation = useNavigation();
   const [profileImage, setProfileImage] = useState(
-    require('../assets/images/asuf.jpg')
+    require('../assets/images/woman2.png')
   );
 
   const handleSaveChanges = () => {
@@ -42,9 +42,11 @@ function EditProfileScreen() {
         <TouchableOpacity onPress={pickImage}>
           <Image source={profileImage} style={tw`w-40 h-40 rounded-full`} />
         </TouchableOpacity>
-        <Text style={tw`text-lg font-bold mt-5`}>Asu Kosar</Text>
+        <Text style={tw`text-lg font-bold mt-5`}>Asude Fışkın</Text>
         <TouchableOpacity onPress={pickImage}>
-          <Text style={tw`text-sm text-pink-700`}>Change Profile Picture</Text>
+          <Text style={tw`text-sm font-medium text-red-700`}>
+            Change Profile Picture
+          </Text>
         </TouchableOpacity>
       </View>
       <TextInput
@@ -73,7 +75,7 @@ function EditProfileScreen() {
       />
       <TouchableOpacity
         onPress={handleSaveChanges}
-        style={tw`rounded-lg mt-5 w-80 h-12 p-2 items-center justify-center bg-red-700`}
+        style={tw`rounded-lg mt-5 w-80 h-12 p-2 items-center justify-center bg-[#03A9F4]`}
       >
         <Text style={tw`text-white font-bold`}>Save Changes</Text>
       </TouchableOpacity>

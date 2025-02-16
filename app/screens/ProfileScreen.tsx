@@ -109,7 +109,7 @@ function ProfileScreen() {
             <View style={tw`items-center mt-10`}>
               <View style={tw`items-center w-full px-10`}>
                 <Image
-                  source={require('../assets/images/asuf.jpg')}
+                  source={require('../assets/images/woman2.png')}
                   style={tw`w-32 h-32 rounded-full border-4 border-white`}
                 />
                 <View style={tw`items-center mt-2`}>
@@ -126,11 +126,11 @@ function ProfileScreen() {
               <Text style={tw`text-sm text-gray-500`}>Following</Text>
             </View>
             <View style={tw`items-center mr-4`}>
-              <Text style={tw`text-base font-bold`}>10</Text>
+              <Text style={tw`text-base font-bold`}>100</Text>
               <Text style={tw`text-sm text-gray-500`}>Followers</Text>
             </View>
             <View style={tw`items-center`}>
-              <Text style={tw`text-base font-bold`}>2001</Text>
+              <Text style={tw`text-base font-bold`}>21</Text>
               <Text style={tw`text-sm text-gray-500`}>Photos</Text>
             </View>
           </View>

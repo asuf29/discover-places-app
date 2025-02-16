@@ -31,7 +31,7 @@ const CategoryList = () => {
   );
 
   return (
-    <View style={tw`h-30 items-center `}>
+    <View style={tw`h-30 items-center`}>
       <FlatList
         data={categories}
         renderItem={renderItem}
