@@ -1,7 +1,7 @@
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const API_URL = 'https://3b02-151-250-90-106.ngrok-free.app/api';
+const API_URL = 'http://localhost:3000/api';
 
 export const registerUser = async (userData: {
   first_name: string;
